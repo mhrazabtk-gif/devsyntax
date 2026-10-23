@@ -5,10 +5,12 @@ const DOMAIN = 'https://devsyntax.pages.dev';
 const urlsFile = path.join(__dirname, 'urls.txt');
 const outputPath = path.join(__dirname, 'public', 'sitemap.xml');
 
+// Ensure public directory exists
 if (!fs.existsSync(path.join(__dirname, 'public'))) {
     fs.mkdirSync(path.join(__dirname, 'public'), { recursive: true });
 }
 
+// 1. Read URLs and generate sitemap.xml
 let urls = [];
 if (fs.existsSync(urlsFile)) {
     urls = fs.readFileSync(urlsFile, 'utf8')
@@ -35,3 +37,14 @@ sitemapXML += `</urlset>`;
 
 fs.writeFileSync(outputPath, sitemapXML, 'utf8');
 console.log(`Sitemap successfully generated with ${urls.length} URLs at ${now}`);
+
+// 2. Automatically copy _redirects into the public folder
+const sourceRedirects = path.join(__dirname, '_redirects');
+const targetRedirects = path.join(__dirname, 'public', '_redirects');
+
+if (fs.existsSync(sourceRedirects)) {
+    fs.copyFileSync(sourceRedirects, targetRedirects);
+    console.log('_redirects successfully copied to public folder!');
+} else {
+    console.log('Warning: _redirects file not found in the root directory.');
+}
