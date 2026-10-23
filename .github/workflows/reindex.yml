@@ -23,12 +23,6 @@ jobs:
       - name: Run IndexNow Ping
         run: node ping-indexnow.js
 
-      - name: Copy Redirects to Public
-        run: |
-          if [ -f _redirects ]; then
-            cp _redirects public/_redirects
-          fi
-
       - name: Deploy to Cloudflare Pages
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
