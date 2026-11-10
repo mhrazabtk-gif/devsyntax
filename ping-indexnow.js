@@ -2,9 +2,9 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 
-const HOST = 'devsyntax.pages.dev';
+const HOST = 'devsyntax.pageaura.xyz';
 const KEY = '7869b6e8c08d4f26897c57a3b9a85011'; // Apni IndexNow key yahan dalein
-const KEY_LOCATION = `https://devsyntax.pages.dev/7869b6e8c08d4f26897c57a3b9a85011.txt`;
+const KEY_LOCATION = `https://devsyntax.pageaura.xyz/7869b6e8c08d4f26897c57a3b9a85011.txt`;
 
 const urlsFile = path.join(__dirname, 'urls.txt');
 let urlList = [];
